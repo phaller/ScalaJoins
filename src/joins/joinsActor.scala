@@ -25,7 +25,7 @@ package joins
 import scala.actors.{Actor, OutputChannel}
 import scala.actors.Actor._
 
-object joinsActor extends Application {
+object joinsActor extends App {
 
   class JoinPatterns[R](f: PartialFunction[Any, R], joins: JoinsBase)
   extends PartialFunction[Any, R] {

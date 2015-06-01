@@ -37,18 +37,21 @@ class JBB extends Joins {
   }
 }
 
-object testJBB extends Application {
-  import scala.concurrent.ops._
+object testJBB extends App {
+  import scala.concurrent.Future
+  import scala.concurrent.ExecutionContext.Implicits.global
+
   val buf = new JBB { this.Free(2) }
   val s = "hello"
-  spawn {
+  Future {
     buf.Put(s)
     buf.Put(s)
   }
-  spawn {
+  Future {
     buf.Get()
     buf.Get()
   }
+  Thread.sleep(500)
 }
 
 class LBB(capacity: Int) extends BB {

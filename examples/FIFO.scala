@@ -8,9 +8,10 @@ package examples
 
 import joins._
 import events._
-import scala.concurrent.ops._
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-object testFIFO extends Application {
+object testFIFO extends App {
   class FIFO extends Joins {
     object Put extends AsyncEvent[Int]
     object Get extends NullarySyncEvent[Int]
@@ -29,8 +30,10 @@ object testFIFO extends Application {
   }
   val buf = new FIFO { St1() }
   
-  spawn {
+  Future {
     buf.Put(42)
     println(buf.Get())
   }
+
+  Thread.sleep(500)
 }

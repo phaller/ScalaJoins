@@ -8,9 +8,10 @@ package examples
 
 import joins._
 import events._
-import scala.concurrent.ops._
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-object dynamicJoins extends Application {
+object dynamicJoins extends App {
 
   class DynamicBuffer extends Joins {
     object Put1 extends AsyncEvent[Int]
@@ -27,15 +28,17 @@ object dynamicJoins extends Application {
 
   val dyn = new DynamicBuffer
 
-  spawn {
+  Future {
     Thread.sleep(500)
     Console.println("Get: "+dyn.Get())
   }
 
-  spawn {
+  Future {
     Thread.sleep(500)
     Console.println("Put1: "+dyn.Put1(40))
     Thread.sleep(500)
     Console.println("Put2: "+dyn.Put2(2))
   }
+
+  Thread.sleep(1500)
 }

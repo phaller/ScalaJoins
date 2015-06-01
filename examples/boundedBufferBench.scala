@@ -17,7 +17,7 @@ object boundedBufferBench {
     println("testing lock-based implementation...")
     val lstart = System.currentTimeMillis
     var threads = List[Thread]()    
-    for (val i <- List.range(0, num)) {
+    for (i <- List.range(0, num)) {
       val lprod = new LProducer(lbuf, times)
       val lcons = new LConsumer(lbuf, times)
       threads = lprod :: lcons :: threads
@@ -31,7 +31,7 @@ object boundedBufferBench {
     println("testing join-based implementation...")
     val jstart = System.currentTimeMillis
     var jthreads = List[Thread]()    
-    for (val i <- List.range(0, num)) {
+    for (i <- List.range(0, num)) {
       val jprod = new JProducer(jbuf, times)
       val jcons = new JConsumer(jbuf, times)
       jthreads = jprod :: jcons :: jthreads
@@ -46,7 +46,7 @@ object boundedBufferBench {
   class LProducer(b: LBB, cnt: Int) extends Thread {
     val s = "hello"
     override def run() {
-      for (val _ <- List.range(0, cnt)) {
+      for (_ <- List.range(0, cnt)) {
         b.Put(s)
       }
     }
@@ -54,7 +54,7 @@ object boundedBufferBench {
 
   class LConsumer(b: LBB, cnt: Int) extends Thread {
     override def run() {
-      for (val _ <- List.range(0, cnt)) {
+      for (_ <- List.range(0, cnt)) {
         b.Get()
       }
     }
@@ -63,7 +63,7 @@ object boundedBufferBench {
   class JProducer(b: JBB, cnt: Int) extends Thread {
     val s = "hello"
     override def run() {
-      for (val _ <- List.range(0, cnt)) {
+      for (_ <- List.range(0, cnt)) {
         b.Put(s)
       }
     }
@@ -71,7 +71,7 @@ object boundedBufferBench {
 
   class JConsumer(b: JBB, cnt: Int) extends Thread {
     override def run() {
-      for (val _ <- List.range(0, cnt)) {
+      for (_ <- List.range(0, cnt)) {
         b.Get()
       }
     }

@@ -8,9 +8,10 @@ package examples
 
 import joins._
 import events._
-import scala.concurrent.ops._
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-object syncChannel extends Application {
+object syncChannel extends App {
 
   class SyncChannel extends Joins {
     object Read extends NullarySyncEvent[Int]
@@ -25,13 +26,15 @@ object syncChannel extends Application {
 
   val schan = new SyncChannel
 
-  spawn {
+  Future {
     Thread.sleep(500)
     Console.println("read: "+schan.Read())
   }
 
-  spawn {
+  Future {
     Thread.sleep(1000)
     Console.println("wrote: "+schan.Write(42))
   }
+
+  Thread.sleep(1500)
 }

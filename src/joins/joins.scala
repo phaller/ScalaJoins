@@ -27,7 +27,8 @@
 package joins
 
 import scala.concurrent.{SyncVar, Lock}
-import scala.concurrent.ops._
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.mutable.{Queue, BitSet, Set}
 
 case class JoinAttrs(joins: JoinsBase, dry: Boolean)
@@ -287,7 +288,7 @@ object events {
   }
 }
 
-object joinsTest extends Application {
+object joinsTest extends App {
   import events._
 
   class Buffer extends Joins {
@@ -307,7 +308,7 @@ object joinsTest extends Application {
 
   val buffer = new Buffer
 
-  spawn {
+  Future {
     Thread.sleep(1000)
     buffer.Put(4)
 
@@ -315,14 +316,16 @@ object joinsTest extends Application {
     buffer.Put2("world")
   }
 
-  spawn {
+  Future {
     Console.println("get1: "+buffer.Get1("hello"))
   }
 
-  spawn {
+  Future {
     Thread.sleep(2000)
     Console.println("getty: "+buffer.Getty(2))
   }
+
+  Thread.sleep(2500)
 }
 
 /*
