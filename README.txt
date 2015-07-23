@@ -1,19 +1,17 @@
 Scala Joins -- README
 =====================
 
-Version: 0.4
+Version: 0.5
 Author: Philipp Haller
-Date: 2008/01/04
 
-This preview of a Scala Joins library can be compiled and run with
-Scala version 2.6.1-final. Here is a sample session:
+This Scala Joins library can be compiled and run using Scala 2.11.x.
 
-$ tar xzf ScalaJoins-0.4.tar.gz
-$ cd ScalaJoins-0.4
+$ tar xzf ScalaJoins-0.5.tar.gz
+$ cd ScalaJoins-0.5
 $ mkdir classes
 $ scalac -d classes src/joins/*.scala
 
-The main `joins.scala` file already contains a test that can be run as follows:
+The main `joins.scala` file contains a runnable test:
 $ scala -cp classes joins.joinsTest
 getty: 4
 get1: helloworld
@@ -29,4 +27,3 @@ $ scalac -d classes examples/FIFO.scala
 $ scala -cp classes examples.testFIFO
 case 1
 42
-
