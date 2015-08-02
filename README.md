@@ -14,8 +14,8 @@ message sending and token-passing continuations.
 
 ## Releases
 
-- Release [v0.5](https://github.com/phaller/ScalaJoins/releases/tag/v0.4) (for Scala 2.11)
-- Release [v0.4](https://github.com/phaller/ScalaJoins/releases/tag/v0.5) (original release)
+- Release [v0.5](https://github.com/phaller/ScalaJoins/releases/tag/v0.5) (for Scala 2.11)
+- Release [v0.4](https://github.com/phaller/ScalaJoins/releases/tag/v0.4) (original release)
 
 ## Paper
 
